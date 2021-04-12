@@ -11,9 +11,9 @@ version: 0.0.1
 #       #   fileName: just_audio_background_plugin.dart
 
 dependencies:
-  #just_audio_platform_interface: ^3.0.0
-  just_audio_platform_interface:
-    path: ../just_audio_platform_interface
+  just_audio_platform_interface: ^3.0.0
+#   just_audio_platform_interface:
+#     path: ../just_audio_platform_interface
   audio_service: ^0.17.0-nullsafety.0
   audio_session: ^0.1.0
   flutter:
