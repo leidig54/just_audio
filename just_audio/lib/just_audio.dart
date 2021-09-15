@@ -1315,11 +1315,11 @@ class AudioPlayer {
         if (checkInterruption()) return platform;
         await platform.setSpeed(SetSpeedRequest(speed: speed));
         if (checkInterruption()) return platform;
-        try {
-          await platform.setPitch(SetPitchRequest(pitch: pitch));
-        } catch (e) {
-          // setPitch not supported on this platform.
-        }
+        // try {
+        //   await platform.setPitch(SetPitchRequest(pitch: pitch));
+        // } catch (e) {
+        //   // setPitch not supported on this platform.
+        // }
         if (checkInterruption()) return platform;
         try {
           await platform.setSkipSilence(
