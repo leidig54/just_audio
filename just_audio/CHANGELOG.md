@@ -1,3 +1,18 @@
+## 0.9.14
+
+* Fix bug when pausing/stopping quickly after play.
+
+## 0.9.13
+
+* Fix MIME type in LockCachingAudioSource.
+* Add radio/livestream example.
+* Report URL from ICY metadata on iOS/macOS.
+* Update example to just_audio_libwinmedia 0.0.4 (@bdlukaa)
+
+## 0.9.12
+
+* Windows/Linux support (@bdlukaa, credit to @alexmercerind for libwinmedia).
+
 ## 0.9.11
 
 * Upgrade Android to ExoPlayer 2.15.0.

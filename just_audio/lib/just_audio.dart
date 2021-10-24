@@ -846,6 +846,7 @@ class AudioPlayer {
     final playCompleter = Completer<dynamic>();
     final audioSession = await AudioSession.instance;
     if (!_handleAudioSessionActivation || await audioSession.setActive(true)) {
+      if (!playing) return;
       // TODO: rewrite this to more cleanly handle simultaneous load/play
       // requests which each may result in platform play requests.
       final requireActive = _audioSource != null;
@@ -892,6 +893,7 @@ class AudioPlayer {
   Future<void> _sendPlayRequest(
       AudioPlayerPlatform platform, Completer<void>? playCompleter) async {
     try {
+      if (!playing) return; // defensive
       await platform.play(PlayRequest());
       playCompleter?.complete();
     } catch (e, stackTrace) {
@@ -2693,7 +2695,6 @@ class LockCachingAudioSource extends StreamAudioSource {
     _downloading = true;
     final cacheFile = await this.cacheFile;
     final partialCacheFile = await _partialCacheFile;
-    final mimeType = await _readCachedMimeType();
 
     File getEffectiveCacheFile() =>
         partialCacheFile.existsSync() ? partialCacheFile : cacheFile;
@@ -2714,6 +2715,9 @@ class LockCachingAudioSource extends StreamAudioSource {
     // ignore: close_sinks
     final sink = (await _partialCacheFile).openWrite();
     var sourceLength = response.contentLength;
+    final mimeType = response.headers.contentType.toString();
+    final mimeFile = await _mimeFile;
+    await mimeFile.writeAsString(mimeType);
     final inProgressResponses = <_InProgressCacheResponse>[];
     late StreamSubscription subscription;
     var percentProgress = 0;
