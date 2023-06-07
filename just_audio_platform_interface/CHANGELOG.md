@@ -1,3 +1,11 @@
+## 4.2.1
+
+* Update minimum flutter version to 3.0.
+
+## 4.2.0
+
+- Add InitRequest.androidOffloadSchedulingEnabled.
+
 ## 4.1.0
 
 - Add disposeAllPlayers method.
